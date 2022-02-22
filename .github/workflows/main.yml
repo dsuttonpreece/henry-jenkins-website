@@ -4,16 +4,16 @@
 # Remember to add API_TOKEN_GITHUB in repo Settings > Secrets as well!
 env:
   githubEmail: danielsuttonp@gmail.com
-  deployToRepo: dsuttonpreece.github.io/henry-jenkins-website
+  deployToRepo: henry-jenkins-website
 
 name: Github Pages Astro CI
 
 on:
   # Triggers the workflow on push and pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
