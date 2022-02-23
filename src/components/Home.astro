@@ -1,0 +1,24 @@
+---
+import { asHTML, asText } from "@prismicio/helpers";
+import { client } from "../prismic.js";
+
+const home = await client.getSingle("home");
+const projects = await client.getAllByType("project");
+---
+
+<div>
+  <section>
+    <h1>{asText(home?.data.title)}</h1>
+    {asHTML(home?.data.about)}
+  </section>
+  <section>
+    <ul>
+      {projects?.map(project => (
+        <li>
+          <h2>{asText(project.data.name)}</h2>
+          {project.data.date}
+        </li>
+      ))}
+    </ul>
+  </section>
+</div>
