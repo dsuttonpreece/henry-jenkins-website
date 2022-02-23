@@ -1,0 +1,15 @@
+---
+import {
+	asText
+} from "@prismicio/helpers";
+import { client } from "../prismic.js"
+
+const projects = await client.getAllByType("project")
+---
+
+<section>
+{projects?.map(project => (
+	asText(project.data.name) 
+))}
+</section>
+
