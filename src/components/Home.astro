@@ -6,19 +6,46 @@ const home = await client.getSingle("home");
 const projects = await client.getAllByType("project");
 ---
 
-<div>
-  <section>
+<div class="home-layout">
+  <header>
     <h1>{asText(home?.data.title)}</h1>
+  </header>
+  <article>
     {asHTML(home?.data.about)}
-  </section>
-  <section>
-    <ul>
+  </article>
+  <article>
+    <ul class="projects">
       {projects?.map(project => (
-        <li>
+        <li class="project">
           <h2>{asText(project.data.name)}</h2>
           {project.data.date}
         </li>
       ))}
     </ul>
-  </section>
+  </article>
 </div>
+
+<style lang="scss">
+  .home-layout {
+    display: grid;
+  }
+
+  .projects {
+    border: 1px solid black;
+    list-style: none;
+    margin: 0;
+    padding: 1px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1px;
+  }
+
+  .project {
+    border: 1px solid black;
+    display: flex;
+
+    h2 {
+      font-size: 1rem;
+    }
+  }
+</style>
