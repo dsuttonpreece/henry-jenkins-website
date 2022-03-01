@@ -1,0 +1,34 @@
+@import "../styles/global.css";
+
+.projects {
+  border: 1px solid black;
+
+  h2 {
+    padding: 2px;
+  }
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 1px;
+  row-gap: 1px;
+}
+
+.project {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  width: 100%;
+
+  &:focus {
+    background-color: yellow;
+    outline: none;
+  }
+}

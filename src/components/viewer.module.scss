@@ -1,0 +1,42 @@
+.viewer {
+  border: 1px solid black;
+
+  h2 {
+    padding: 2px;
+  }
+
+  figure {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 1px;
+    width: 50vh;
+  }
+
+  img {
+    border: 1px solid black;
+    display: block;
+    width: 100%;
+  }
+}
+
+.titleLink {
+  display: flex;
+  gap: 6px;
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .icon {
+    display: none;
+
+    svg {
+      height: 12px;
+      position: relative;
+      width: 12px;
+    }
+  }
+  &[href][rel="external"] .icon {
+    display: initial;
+  }
+}
