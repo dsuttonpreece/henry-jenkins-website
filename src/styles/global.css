@@ -1,4 +1,7 @@
 :root {
+  --background-color-page: #ddd;
+  --background-color-section: #eee;
+
   --border: 1px solid black;
   --focus-border: 1px solid blue;
   --focus-color: yellow;
@@ -9,6 +12,15 @@
   margin: 0;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color-page);
+}
+
 a:focus {
   background-color: var(--focus-color);
   border: var(--focus-border);
@@ -17,4 +29,8 @@ a:focus {
 
 a:selected {
   text-decoration: none;
+}
+
+button {
+  font-family: inherit;
 }

@@ -13,7 +13,7 @@ export function Viewer({ name, link, artwork }) {
         />
       </figure>
       {link.url && (
-        <a class={styles.titleLink} href={link.url} target={link.target}>
+        <a class={styles.link} href={link.url} target={link.target}>
           Listen on Bandcamp
           <span class={styles.icon}>
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

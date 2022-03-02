@@ -1,6 +1,7 @@
 @import "../styles/global.css";
 
 .projects {
+  background-color: var(--background-color-section);
   border: var(--border);
 
   h2 {
@@ -39,7 +40,6 @@
 }
 
 .selected {
-  background-color: lightgray;
   margin-left: 4px;
   padding-right: 4px;
 }
