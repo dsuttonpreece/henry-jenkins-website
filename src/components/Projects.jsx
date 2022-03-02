@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import { asText } from "@prismicio/helpers";
 
@@ -9,18 +9,21 @@ import styles from "./projects.module.scss";
 export function Projects({ projects }) {
   const isSSR = import.meta.env.SSR;
 
-  const [selectedProject, setSelectedProject] = useState(0);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
 
   return (
-    <article class={styles.projects}>
+    <section class={styles.projects}>
       <h2>Projects</h2>
       <ul class={styles.projectList}>
         {projects?.map(({ data: project }, index) => (
           <li>
             <button
-              class={styles.project}
+              class={[
+                styles.project,
+                selectedProjectIndex === index && styles.selected,
+              ].join(" ")}
               onClick={() => {
-                setSelectedProject(index);
+                setSelectedProjectIndex(index);
               }}
             >
               <h3 class={styles.title}>{asText(project.name)}</h3>
@@ -31,9 +34,9 @@ export function Projects({ projects }) {
       </ul>
       {!isSSR &&
         createPortal(
-          <Viewer {...projects[selectedProject].data} />,
-          document.getElementById("viewer-root")
+          <Viewer {...projects[selectedProjectIndex].data} />,
+          document.getElementById("viewer")
         )}
-    </article>
+    </section>
   );
 }

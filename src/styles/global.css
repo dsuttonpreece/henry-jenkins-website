@@ -1,7 +1,20 @@
+:root {
+  --border: 1px solid black;
+  --focus-border: 1px solid blue;
+  --focus-color: yellow;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
-/* :root {
-} */
+a:focus {
+  background-color: var(--focus-color);
+  border: var(--focus-border);
+  outline: none;
+}
+
+a:selected {
+  text-decoration: none;
+}

@@ -1,5 +1,5 @@
 .viewer {
-  border: 1px solid black;
+  border: var(--border);
 
   h2 {
     padding: 2px;
@@ -13,7 +13,7 @@
   }
 
   img {
-    border: 1px solid black;
+    border: var(--border);
     display: block;
     width: 100%;
   }
@@ -21,7 +21,8 @@
 
 .titleLink {
   display: flex;
-  gap: 6px;
+  gap: 4px;
+  justify-content: center;
 
   .title {
     font-size: 1rem;
@@ -36,7 +37,7 @@
       width: 12px;
     }
   }
-  &[href][rel="external"] .icon {
+  &[href][target="_blank"] .icon {
     display: initial;
   }
 }

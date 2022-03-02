@@ -3,6 +3,7 @@ import { asHTML, asText } from "@prismicio/helpers";
 import { client } from "../prismic.js";
 
 import { Projects } from "./Projects.jsx";
+import { Viewer } from "./Viewer.jsx";
 
 const home = await client.getSingle("home");
 const projects = await client.getAllByType("project");
@@ -12,12 +13,16 @@ const projects = await client.getAllByType("project");
   <header>
     <h1>{asText(home?.data.title)}</h1>
   </header>
-  <article class="about">
-    sadf
+  <article id="about">
     {asHTML(home?.data.about)}
   </article>
-  <Projects client:idle {projects} />
-  <aside id="viewer-root"></aside>
+  <article>
+    <Projects client:idle {projects} />
+  </article>
+  <aside id="viewer">
+    <!-- Don't ssr Viewer component for now  -->
+    <!-- <Viewer {...projects[0].data} /> -->
+  </aside>
 </main>
 
 <style lang="scss">
@@ -30,7 +35,7 @@ const projects = await client.getAllByType("project");
   }
 
   header,
-  .about {
+  #about {
     grid-column-start: span 2;
   }
 </style>

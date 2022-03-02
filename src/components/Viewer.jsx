@@ -1,10 +1,10 @@
-import { asText, asImageSrc } from "@prismicio/helpers";
+import { asLink, asImageSrc, asText } from "@prismicio/helpers";
 
 import styles from "./viewer.module.scss";
 
-export function Viewer({ name, href, artwork }) {
+export function Viewer({ name, link, artwork }) {
   return (
-    <article className={styles.viewer}>
+    <section className={styles.viewer}>
       <h2>{asText(name)}</h2>
       <figure>
         <img
@@ -12,13 +12,16 @@ export function Viewer({ name, href, artwork }) {
           alt={`Cover artwork for: ${asText(name)}`}
         />
       </figure>
-      <a class={styles.titleLink} href={href} rel="external" target="_blank">
-        <span class={styles.icon}>
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <use href="#icon-external-link"></use>
-          </svg>
-        </span>
-      </a>
-    </article>
+      {link.url && (
+        <a class={styles.titleLink} href={link.url} target={link.target}>
+          Listen on Bandcamp
+          <span class={styles.icon}>
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <use href="#icon-external-link"></use>
+            </svg>
+          </span>
+        </a>
+      )}
+    </section>
   );
 }

@@ -1,7 +1,7 @@
 @import "../styles/global.css";
 
 .projects {
-  border: 1px solid black;
+  border: var(--border);
 
   h2 {
     padding: 2px;
@@ -19,8 +19,8 @@
 
 .project {
   align-items: center;
-  background-color: transparent;
-  border: 1px solid black;
+  background-color: white;
+  border: var(--border);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -28,7 +28,18 @@
   width: 100%;
 
   &:focus {
-    background-color: yellow;
+    background-color: var(--focus-color);
     outline: none;
   }
+
+  &:hover {
+    margin-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+.selected {
+  background-color: lightgray;
+  margin-left: 4px;
+  padding-right: 4px;
 }
