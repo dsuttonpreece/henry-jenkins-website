@@ -2,50 +2,40 @@
 import { asHTML, asText } from "@prismicio/helpers";
 import { client } from "../prismic.js";
 
+import { Projects } from "./Projects.jsx";
+import { Viewer } from "./Viewer.jsx";
+
 const home = await client.getSingle("home");
 const projects = await client.getAllByType("project");
 ---
 
-<div class="home-layout">
+<main>
   <header>
     <h1>{asText(home?.data.title)}</h1>
   </header>
-  <article>
+  <article id="about">
     {asHTML(home?.data.about)}
   </article>
   <article>
-    <ul class="projects">
-      {projects?.map(project => (
-        <li class="project">
-          <h2>{asText(project.data.name)}</h2>
-          {project.data.date}
-        </li>
-      ))}
-    </ul>
+    <Projects client:idle {projects} />
   </article>
-</div>
+  <aside id="viewer">
+    <!-- Don't ssr Viewer component for now  -->
+    <!-- <Viewer {...projects[0].data} /> -->
+  </aside>
+</main>
 
 <style lang="scss">
-  .home-layout {
+  main {
     display: grid;
+    gap: 10px;
+    padding: 10px;
+    grid-template-columns: 2fr 1.5fr;
+    align-items: start;
   }
 
-  .projects {
-    border: 1px solid black;
-    list-style: none;
-    margin: 0;
-    padding: 1px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1px;
-  }
-
-  .project {
-    border: 1px solid black;
-    display: flex;
-
-    h2 {
-      font-size: 1rem;
-    }
+  header,
+  #about {
+    grid-column-start: span 2;
   }
 </style>

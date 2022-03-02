@@ -1,0 +1,45 @@
+@import "../styles/global.css";
+
+.projects {
+  background-color: var(--background-color-section);
+  border: var(--border);
+
+  h2 {
+    padding: 2px;
+  }
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 1px;
+  row-gap: 1px;
+}
+
+.project {
+  align-items: center;
+  background-color: white;
+  border: var(--border);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+  width: 100%;
+
+  &:focus {
+    background-color: var(--focus-color);
+    outline: none;
+  }
+
+  &:hover {
+    margin-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+.selected {
+  margin-left: 4px;
+  padding-right: 4px;
+}

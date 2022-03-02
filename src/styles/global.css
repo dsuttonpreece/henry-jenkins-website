@@ -1,7 +1,36 @@
+:root {
+  --background-color-page: #ddd;
+  --background-color-section: #eee;
+
+  --border: 1px solid black;
+  --focus-border: 1px solid blue;
+  --focus-color: yellow;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
-/* :root {
-} */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color-page);
+}
+
+a:focus {
+  background-color: var(--focus-color);
+  border: var(--focus-border);
+  outline: none;
+}
+
+a:selected {
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
