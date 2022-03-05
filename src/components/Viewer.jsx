@@ -1,4 +1,4 @@
-import { asLink, asImageSrc, asText } from "@prismicio/helpers";
+import { asImageSrc, asText } from "@prismicio/helpers";
 
 import styles from "./viewer.module.scss";
 
@@ -12,7 +12,7 @@ export function Viewer({ name, link, artwork }) {
           alt={`Cover artwork for: ${asText(name)}`}
         />
       </figure>
-      {link.url && (
+      {link?.url && (
         <a class={styles.link} href={link.url} target={link.target}>
           Listen on Bandcamp
           <span class={styles.icon}>

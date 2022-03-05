@@ -6,7 +6,12 @@ import { Projects } from "./Projects.jsx";
 import { Viewer } from "./Viewer.jsx";
 
 const home = await client.getSingle("home");
-const projects = await client.getAllByType("project");
+const projects = await client.getAllByType("project", {
+  orderings: {
+    field: "my.project.date",
+    direction: "desc",
+  },
+});
 ---
 
 <main>

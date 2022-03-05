@@ -24,7 +24,7 @@
   border: var(--border);
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  font-size: 1rem;
   padding: 0 4px;
   width: 100%;
 
@@ -36,6 +36,19 @@
   &:hover {
     margin-left: 4px;
     padding-right: 4px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .roles {
+    font-style: italic;
+    padding-left: 6px;
+  }
+
+  .date {
+    margin-left: auto;
   }
 }
 

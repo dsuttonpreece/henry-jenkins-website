@@ -27,7 +27,8 @@ export function Projects({ projects }) {
               }}
             >
               <h3 class={styles.title}>{asText(project.name)}</h3>
-              {project.date}
+              <span class={styles.roles}>{asText(project.roles)}</span>
+              <span class={styles.date}>{project.date}</span>
             </button>
           </li>
         ))}
