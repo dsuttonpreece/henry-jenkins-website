@@ -36,6 +36,7 @@ jobs:
         run: |
           npm run build
           touch ./dist/.nojekyll
+          echo 'henryjenkins.com.au' > ./dist/CNAME
 
       # Push to your pages repo
       - name: Push to pages repo
