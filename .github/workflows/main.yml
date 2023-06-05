@@ -50,3 +50,8 @@ jobs:
           user-email: ${{ env.githubEmail }}
           commit-message: Deploy ORIGIN_COMMIT
           target-branch: gh-pages
+      
+
+      # Add dummy commit to prevent repo from becoming inactive
+      - uses: gautamkrishnar/keepalive-workflow@v1
+
