@@ -21,7 +21,7 @@ on:
 
 # Add permissions for GITHUB_TOKEN
 permissions:
-  contents: read
+  contents: write
   actions: write
 
 jobs:
