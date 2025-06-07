@@ -14,10 +14,15 @@ on:
     branches: [master]
 
   schedule:
-    - cron: "30 6 * * 0" # 5:30pm (Melbourne time) Sunday
+    - cron: "30 6 * * 0" # 6:30 AM UTC Sunday (5:30 PM Melbourne time during standard time)
 
   # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
+
+# Add permissions for GITHUB_TOKEN
+permissions:
+  contents: read
+  actions: write
 
 jobs:
   deploy:
@@ -25,13 +30,23 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full history for better commit messages
+
+      # Setup Node.js with caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
 
       # Install dependencies with npm
       - name: Install dependencies
         run: npm ci
 
-      # Build the project and add .nojekyll file to supress default behaviour
+      # Build the project and add .nojekyll file to suppress default behaviour
       - name: Build
         run: |
           npm run build
@@ -48,10 +63,12 @@ jobs:
           destination-github-username: ${{ github.actor }}
           destination-repository-name: ${{ env.deployToRepo }}
           user-email: ${{ env.githubEmail }}
-          commit-message: Deploy ORIGIN_COMMIT
+          user-name: ${{ github.actor }}
+          commit-message: "Deploy from ${{ github.sha }}"
           target-branch: gh-pages
-      
 
       # Add dummy commit to prevent repo from becoming inactive
-      - uses: gautamkrishnar/keepalive-workflow@v1
-
+      - name: Keep repository active
+        uses: gautamkrishnar/keepalive-workflow@v2
+        with:
+          commit_message: 'Automated commit to keep repository active'
