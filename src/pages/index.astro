@@ -1,6 +1,6 @@
 ---
-// Component Imports
 import Home from "../components/Home.astro";
+import "../styles/global.css";
 
 // Component Script:
 let title = "Henry Jenkins";
@@ -13,9 +13,6 @@ let title = "Henry Jenkins";
     <title>{title}</title>
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <style global>
-      @import "../styles/global.css";
-    </style>
   </head>
   <body>
     <svg

@@ -1,9 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { asHTML, asText } from "@prismicio/helpers";
 import { client } from "../prismic.js";
-
 import { Projects } from "./Projects.jsx";
-import { Viewer } from "./Viewer.jsx";
 
 const home = await client.getSingle("home");
 const projects = await client.getAllByType("project", {
@@ -12,19 +11,32 @@ const projects = await client.getAllByType("project", {
     direction: "desc",
   },
 });
+const photo = home.data.photo;
 ---
 
 <main>
-  <header>
-    <h1>{asText(home?.data.title)}</h1>
-  </header>
-  <article id="about">
-    {asHTML(home?.data.about)}
-  </article>
+  <div id="about">
+    <div>
+      <header>
+        <h1>{asText(home?.data.title)}</h1>
+      </header>
+      <article>
+        <Fragment set:html={asHTML(home?.data.about)} />
+      </article>
+      <Image
+        src={photo?.url}
+        alt={photo?.alt || "Photo of Henry Jenkins"}
+        width={photo?.dimensions.width}
+        height={photo?.dimensions.height}
+        loading="eager"
+      />
+    </div>
+  </div>
   <article>
     <Projects client:idle {projects} />
   </article>
   <aside id="viewer">
+    <div></div>
     <!-- Don't ssr Viewer component for now  -->
     <!-- <Viewer {...projects[0].data} /> -->
   </aside>
@@ -39,8 +51,59 @@ const projects = await client.getAllByType("project", {
     align-items: start;
   }
 
-  header,
   #about {
-    grid-column-start: span 2;
+    container-type: inline-size;
+    grid-column: 1 / -1;
+
+    div {
+      display: grid;
+      grid-template-columns: 1fr 250px;
+      grid-template-rows: auto 1fr;
+      gap: 10px; // Add gap between columns
+
+      header {
+        grid-row: 1;
+        grid-column: 1;
+        display: grid;
+      }
+
+      article {
+        grid-row: 2;
+        grid-column: 1;
+        text-wrap: pretty;
+
+        * {
+          margin-top: 0.2em;
+        }
+      }
+
+      img {
+        grid-row: 1 / -1;
+        grid-column: 2;
+        width: 250px; // Fixed width instead of 100%
+        height: auto;
+        object-fit: cover; // Optional: maintains aspect ratio
+      }
+    }
+  }
+
+  #viewer {
+    position: sticky;
+    top: 10px;
+  }
+
+  @container (max-width: 600px) {
+    #about {
+      div {
+        grid-template-columns: 1fr;
+
+        img {
+          grid-row: auto;
+          grid-column: 1;
+          width: 100%;
+          max-width: 250px;
+        }
+      }
+    }
   }
 </style>

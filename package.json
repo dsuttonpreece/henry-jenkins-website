@@ -1,22 +1,23 @@
 {
-  "name": "@example/starter",
+  "name": "nebulous-nebula",
+  "type": "module",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
-  },
-  "devDependencies": {
-    "@astrojs/renderer-preact": "^0.5.0",
-    "astro": "^0.23.0",
-    "prettier-plugin-astro": "^0.0.12",
-    "sass": "^1.49.8"
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@prismicio/client": "^6.3.0",
-    "@prismicio/helpers": "^2.1.1",
-    "@prismicio/react": "^2.0.6"
+    "@astrojs/preact": "^4.1.0",
+    "@prismicio/client": "^7.17.3",
+    "@prismicio/helpers": "^2.3.9",
+    "astro": "^5.9.1",
+    "preact": "^10.26.8"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "sass": "^1.89.1"
   }
 }

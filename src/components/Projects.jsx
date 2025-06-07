@@ -36,7 +36,7 @@ export function Projects({ projects }) {
       {!isSSR &&
         createPortal(
           <Viewer {...projects[selectedProjectIndex].data} />,
-          document.getElementById("viewer")
+          document.querySelector("#viewer div")
         )}
     </section>
   );

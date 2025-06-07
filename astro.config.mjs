@@ -1,10 +1,9 @@
-export default {
-  buildOptions: {
-    site: "https://www.henryjenkins.com.au",
-    sitemap: true, // Generate sitemap (set to "false" to disable)
-  },
-  devOptions: {
-    port: 3003,
-  },
-  renderers: ["@astrojs/renderer-preact"],
-};
+// @ts-check
+import { defineConfig } from 'astro/config';
+
+import preact from '@astrojs/preact';
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [preact()]
+});
