@@ -67,8 +67,8 @@ jobs:
           commit-message: "Deploy from ${{ github.sha }}"
           target-branch: gh-pages
 
-      # Add dummy commit to prevent repo from becoming inactive
-      - name: Keep repository active
-        uses: gautamkrishnar/keepalive-workflow@v2
-        with:
-          commit_message: 'Automated commit to keep repository active'
+      # # Add dummy commit to prevent repo from becoming inactive
+      # - name: Keep repository active
+      #   uses: gautamkrishnar/keepalive-workflow@v2
+      #   with:
+      #     commit_message: 'Automated commit to keep repository active'
