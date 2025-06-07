@@ -69,9 +69,14 @@ jobs:
 
       # Keep repository active with manual keepalive
       - name: Keep repository active
+        env:
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Configure git to use the PAT for authentication
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           
           # Create an empty commit to show activity
           git commit --allow-empty -m "🤖 Automated keepalive commit"
