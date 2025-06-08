@@ -9,7 +9,7 @@ const projects = await client.getAllByType("project", {
     direction: "desc",
   },
 });
-const initialProject = projects[0] || {};
+const initialProject = projects[0].data || {};
 ---
 
 <article>
