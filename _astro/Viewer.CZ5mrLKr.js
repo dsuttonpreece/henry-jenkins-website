@@ -1,0 +1,1 @@
+import{u as r,a as s,$ as c}from"./jsxRuntime.module.BK4FXcUE.js";import"./hooks.module.BXRoyx2g.js";import"./preact.module.BYSHj7yn.js";function n({children:e,idx:t}){const o=r(c);return s("section",{"data-selected":o===t,children:e})}export{n as Viewer};
