@@ -1,1 +1,0 @@
-const t="_viewer_d5mn6_1",e="_link_d5mn6_20",o="_icon_d5mn6_27",a={viewer:t,link:e,icon:o},s="_projects_7ltoa_2",_="_projectList_7ltoa_10",c="_project_7ltoa_2",l="_title_7ltoa_37",n="_roles_7ltoa_40",r="_date_7ltoa_44",i="_selected_7ltoa_48",p={projects:s,projectList:_,project:c,title:l,roles:n,date:r,selected:i};export{p as a,a as s};

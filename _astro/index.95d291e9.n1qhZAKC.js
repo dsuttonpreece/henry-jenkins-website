@@ -1,0 +1,1 @@
+const t="_projects_7ltoa_2",e="_projectList_7ltoa_10",o="_project_7ltoa_2",s="_title_7ltoa_37",_="_roles_7ltoa_40",c="_date_7ltoa_44",l="_selected_7ltoa_48",a={projects:t,projectList:e,project:o,title:s,roles:_,date:c,selected:l},n="_viewer_d5mn6_1",r="_link_d5mn6_20",i="_icon_d5mn6_27",p={viewer:n,link:r,icon:i};export{p as a,a as s};
