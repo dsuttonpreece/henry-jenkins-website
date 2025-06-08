@@ -1,8 +1,13 @@
 import { asImageSrc, asText } from "@prismicio/helpers";
-
+import { useStore } from "@nanostores/preact";
+import { $selectedProject } from "./projects";
 import styles from "./viewer.module.scss";
 
-export function Viewer({ name, link, artwork }) {
+export function Viewer({ initialProject }) {
+  const selectedProject = useStore($selectedProject);
+
+  const { name, artwork, link } = selectedProject || initialProject || {};
+
   return (
     <section className={styles.viewer}>
       <h2>{asText(name)}</h2>

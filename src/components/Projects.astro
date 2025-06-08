@@ -1,0 +1,27 @@
+---
+import { client } from "../prismic.js";
+import { ProjectList } from "./ProjectList.jsx";
+import { Viewer } from "./Viewer";
+
+const projects = await client.getAllByType("project", {
+  orderings: {
+    field: "my.project.date",
+    direction: "desc",
+  },
+});
+const initialProject = projects[0] || {};
+---
+
+<article>
+  <ProjectList client:idle {projects} />
+</article>
+<aside>
+  <Viewer client:idle {initialProject} />
+</aside>
+
+<style lang="scss">
+  aside {
+    position: sticky;
+    top: 10px;
+  }
+</style>

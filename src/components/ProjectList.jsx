@@ -1,29 +1,30 @@
 import { useEffect, useState } from "preact/hooks";
-import { createPortal } from "preact/compat";
 import { asText } from "@prismicio/helpers";
-
-import { Viewer } from "./Viewer";
-
+import { $selectedProject } from "./projects";
 import styles from "./projects.module.scss";
 
-export function Projects({ projects }) {
-  const isSSR = import.meta.env.SSR;
+export function ProjectList({ projects }) {
+  const [selectedIdx, setSelectedIdx] = useState(0);
 
-  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+  useEffect(() => {
+    const nextProject = projects?.[selectedIdx]?.data;
+    if (!nextProject) return;
+    $selectedProject.set(nextProject);
+  }, [projects]);
 
   return (
     <section class={styles.projects}>
       <h2>Projects</h2>
       <ul class={styles.projectList}>
-        {projects?.map(({ data: project }, index) => (
+        {projects?.map(({ data: project }, idx) => (
           <li>
             <button
               class={[
                 styles.project,
-                selectedProjectIndex === index && styles.selected,
+                selectedIdx === idx && styles.selected,
               ].join(" ")}
               onClick={() => {
-                setSelectedProjectIndex(index);
+                setSelectedIdx(idx);
               }}
             >
               <h3 class={styles.title}>{asText(project.name)}</h3>
@@ -33,11 +34,6 @@ export function Projects({ projects }) {
           </li>
         ))}
       </ul>
-      {!isSSR &&
-        createPortal(
-          <Viewer {...projects[selectedProjectIndex].data} />,
-          document.querySelector("#viewer div")
-        )}
     </section>
   );
 }
