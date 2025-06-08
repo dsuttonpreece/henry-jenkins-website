@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import { asImageSrc, asText } from "@prismicio/helpers";
 import { client } from "../prismic.js";
 import { ProjectList } from "./ProjectList.jsx";
 import { Viewer } from "./Viewer";
@@ -9,19 +11,96 @@ const projects = await client.getAllByType("project", {
     direction: "desc",
   },
 });
-const initialProject = projects[0].data || {};
 ---
 
 <article>
   <ProjectList client:idle {projects} />
 </article>
 <aside>
-  <Viewer client:idle {initialProject} />
+  {
+    projects.map((project, idx) => {
+      const { name, artwork, link } = project.data;
+
+      let src = artwork?.url ? asImageSrc(artwork) : "";
+
+      return (
+        <Viewer client:idle {idx}>
+          <h2>{asText(name)}</h2>
+          <figure>
+            {src && (
+              <Image
+                class="artwork"
+                src={src}
+                alt={`Cover artwork for: ${asText(name)}`}
+                width={artwork?.dimensions?.width}
+                height={artwork?.dimensions?.height}
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            )}
+          </figure>
+          {link?.url && (
+            <a href={link.url} target={link.target}>
+              Listen on Bandcamp
+              <span class="icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <use href="#icon-external-link" />
+                </svg>
+              </span>
+            </a>
+          )}
+        </Viewer>
+      );
+    })
+  }
 </aside>
 
 <style lang="scss">
   aside {
     position: sticky;
     top: 10px;
+    display: grid;
+    background-color: var(--background-color-section);
+    border: var(--border);
+
+    h2 {
+      padding: 2px;
+    }
+
+    figure {
+      margin: 0 auto;
+      max-width: 100%;
+      padding: 1px;
+      width: 50vh;
+    }
+
+    img {
+      border: var(--border);
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  a {
+    display: flex;
+    gap: 4px;
+    margin: auto;
+    text-align: center;
+    width: max-content;
+
+    .icon {
+      display: none;
+
+      svg {
+        height: 12px;
+        position: relative;
+        width: 12px;
+      }
+    }
+
+    &[href][target="_blank"] .icon {
+      display: initial;
+    }
   }
 </style>

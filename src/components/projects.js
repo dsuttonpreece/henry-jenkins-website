@@ -1,4 +1,3 @@
 import { atom } from "nanostores";
 
-export const $selectedProject = atom(null)
-
+export const $selectedProjectIdx = atom(0)

@@ -1,43 +1,4 @@
-.viewer {
-  background-color: var(--background-color-section);
-  border: var(--border);
-
-  h2 {
-    padding: 2px;
-  }
-
-  figure {
-    margin: 0 auto;
-    max-width: 100%;
-    padding: 1px;
-    width: 50vh;
-  }
-
-  img {
-    border: var(--border);
-    display: block;
-    width: 100%;
-  }
+[data-selected="false"] {
+  display: none;
 }
 
-.link {
-  display: flex;
-  gap: 4px;
-  margin: auto;
-  text-align: center;
-  width: max-content;
-
-  .icon {
-    display: none;
-
-    svg {
-      height: 12px;
-      position: relative;
-      width: 12px;
-    }
-  }
-
-  &[href][target="_blank"] .icon {
-    display: initial;
-  }
-}

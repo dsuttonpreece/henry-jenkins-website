@@ -1,17 +1,11 @@
-import { useEffect, useState } from "preact/hooks";
 import { asText } from "@prismicio/helpers";
-import { $selectedProject } from "./projects";
+import { useStore } from "@nanostores/preact";
+import { $selectedProjectIdx } from "./projects";
 import styles from "./projects.module.scss";
 
+// TODO refactor so that all dom is in astro and only interaction logic is in this component
 export function ProjectList({ projects }) {
-  const [selectedIdx, setSelectedIdx] = useState(0);
-
-  useEffect(() => {
-    const nextProject = projects?.[selectedIdx]?.data;
-    if (!nextProject) return;
-    $selectedProject.set(nextProject);
-  }, [projects, selectedIdx]);
-
+  const selectedProjectIdx = useStore($selectedProjectIdx);
   return (
     <section class={styles.projects}>
       <h2>Projects</h2>
@@ -21,10 +15,10 @@ export function ProjectList({ projects }) {
             <button
               class={[
                 styles.project,
-                selectedIdx === idx && styles.selected,
+                selectedProjectIdx === idx && styles.selected,
               ].join(" ")}
               onClick={() => {
-                setSelectedIdx(idx);
+                $selectedProjectIdx.set(idx);
               }}
             >
               <h3 class={styles.title}>{asText(project.name)}</h3>
