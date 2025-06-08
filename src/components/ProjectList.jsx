@@ -10,7 +10,7 @@ export function ProjectList({ projects }) {
     const nextProject = projects?.[selectedIdx]?.data;
     if (!nextProject) return;
     $selectedProject.set(nextProject);
-  }, [projects]);
+  }, [projects, selectedIdx]);
 
   return (
     <section class={styles.projects}>
